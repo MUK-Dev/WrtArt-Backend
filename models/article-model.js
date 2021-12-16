@@ -4,7 +4,7 @@ const articleSchema = mongoose.Schema(
   {
     title: String,
     author: String,
-    content: {},
+    content: String,
     additions: [
       {
         name: String,
