@@ -135,9 +135,11 @@
                   "_id": String,
                   "title": String,
                   "author": String,
+                  "author_avatar": String,
                   "content": String,
                   "additions": [
                     {
+                      "avatar": String,
                       "name": String,
                       "comment": String
                     }
@@ -159,6 +161,7 @@
             "title": String,
             "author": String,
             "content": String,
+            "avatar": String,
           },
           Authorization: Bearer {token}
         </code>
@@ -187,10 +190,12 @@
               "article": {
                 "_id": String,
                 "title": String,
+                "author_avatar": String,
                 "author": String,
                 "content": String,
                 "additions": [
                   {
+                    "avatar": String,
                     "name": String,
                     "comment": String
                   }
@@ -209,6 +214,7 @@
         <pre>
           <code> 
           {
+            "avatar": String,
             "name": String,
             "comment": String,
           },
@@ -250,7 +256,8 @@
             "user-info": {
               "_id": String,
               "name": String,
-              "email": String
+              "email": String,
+              "avatar": String
             },
             "token": String
           }
@@ -281,7 +288,8 @@
             "user-info": {
               "_id": String,
               "name": String,
-              "email": String
+              "email": String,
+              "avatar": String
             },
             "token": String
           }

@@ -27,7 +27,7 @@ const getAllArticles = async (req, res) => {
 };
 
 const postNewArticle = async (req, res) => {
-  const { title, author, content } = req.body;
+  const { title, author, content, avatar } = req.body;
   if (!title.length > 0) {
     return res.send({
       status: 404,
@@ -49,6 +49,7 @@ const postNewArticle = async (req, res) => {
   const newArticle = new Article({
     title,
     author,
+    author_avatar: avatar,
     content,
     additions: [],
   });
@@ -96,7 +97,7 @@ const getSingleArticle = async (req, res) => {
 };
 
 const updateArticle = async (req, res) => {
-  const { name, comment } = req.body;
+  const { name, comment, avatar } = req.body;
   if (!name.length > 0) {
     return res.send({
       status: 404,
@@ -114,6 +115,7 @@ const updateArticle = async (req, res) => {
       $push: {
         additions: [
           {
+            avatar,
             name,
             comment,
           },

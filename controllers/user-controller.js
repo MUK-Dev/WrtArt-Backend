@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 const User = require("../models/user-models");
 const { genToken } = require("../utils/generate-token");
@@ -14,6 +15,13 @@ const register = async (req, res) => {
   let token;
 
   const { name, email, password } = req.body;
+
+  const avatarHash = crypto
+    .createHash("md5")
+    .update(email.toLowerCase())
+    .digest("hex");
+
+  const avatar = `https://avatars.dicebear.com/api/bottts/:${avatarHash}.svg`;
 
   if (!emailRegexp.test(email)) {
     return res.send({
@@ -55,6 +63,7 @@ const register = async (req, res) => {
         name,
         email,
         password: hash,
+        avatar,
       });
 
       try {
@@ -74,6 +83,7 @@ const register = async (req, res) => {
           _id: user._id,
           name: user.name,
           email: user.email,
+          avatar: user.avatar,
         },
         token: token,
       });
@@ -109,6 +119,7 @@ const login = async (req, res) => {
                   _id: foundUser._id,
                   name: foundUser.name,
                   email: foundUser.email,
+                  avatar: foundUser.avatar,
                 },
                 token,
               });
