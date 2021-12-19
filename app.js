@@ -37,7 +37,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    app.listen(5000, () => {
+    app.listen(5000 || process.env.PORT, () => {
       console.log("Running On Port: 5000");
     });
   })
